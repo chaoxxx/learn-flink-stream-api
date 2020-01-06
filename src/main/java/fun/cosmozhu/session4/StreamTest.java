@@ -36,7 +36,7 @@ public class StreamTest {
 		//过滤掉单词长度不大于5的单词
 		//对数据流中的每个元素执行filter方法，只通过结果为True的元素
 		DataStream<String> filter = flatMap.filter((value) -> value.length()>5);
-		//sinks打印出信息
+		//sinks打印出信息	
 		//给DataStream添加一个Sinks
 		filter.addSink(new SinkFunction<String>() {
 			@Override
