@@ -11,3 +11,5 @@ java8
 * [Flink-1.9流计算开发：一、最初的开始HELLO WORLD](http://www.cosmozhu.fun/archives/217)
 * [Flink-1.9流计算开发：二、Map函数](http://www.cosmozhu.fun/archives/221)
 * [Flink-1.9流计算开发：三、flatMap函数](http://www.cosmozhu.fun/archives/225)
+* [Flink-1.9流计算开发：四、filter函数](http://www.cosmozhu.fun/archives/226)
+* [Flink-1.9流计算开发：五、keyBy、sum、print函数](http://www.cosmozhu.fun/archives/228)
