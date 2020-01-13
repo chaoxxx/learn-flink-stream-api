@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 利用reduce函数做分类统计
- *  创建一个简单的订单数据流数据结构为{商品名称,商品数量}，
+ * 创建一个简单的订单数据流数据结构为{商品名称,商品数量}，
  * 实时统计每种商品的商品数量
  * @author cosmozhu
  * @mail zhuchao1103@gmail.com
@@ -38,6 +38,7 @@ public class StreamTest {
 					ctx.collect(Tuple2.of(TYPE[random.nextInt(TYPE.length)], 1));
 				}
 			}
+			
 			@Override
 			public void cancel() {
 				isRunning = false;
@@ -45,7 +46,9 @@ public class StreamTest {
 
 		}, "order-info");
 		
+
 		orderSource.keyBy(0)
+		//将上一元素与当前元素相加后，返回给下一元素处理
 		.reduce(new ReduceFunction<Tuple2<String,Integer>>() {
 			@Override
 			public Tuple2<String, Integer> reduce(Tuple2<String, Integer> value1, Tuple2<String, Integer> value2)
