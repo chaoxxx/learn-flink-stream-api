@@ -47,15 +47,9 @@ public class StreamTest {
 
 		}, "order-info");
 		//这里只为将DataStream → KeyedStream,用空字符串做分区键。所有数据为相同分区
-		orderSource.keyBy(new KeySelector<Tuple2<String,Integer>, String>(){
-			@Override
-			public String getKey(Tuple2<String, Integer> value) throws Exception {
-				return "";
-			}
-			
-		})
+		orderSource.
 		//每10s统计一次最近1min内的订单数量
-		.timeWindow(Time.minutes(1), Time.seconds(10))
+		timeWindowAll(Time.minutes(1), Time.seconds(10))
 		//这里用HashMap做暂存器
 		.fold(new HashMap<String, Integer>(), new FoldFunction<Tuple2<String,Integer>, Map<String, Integer>>() {
 			@Override
