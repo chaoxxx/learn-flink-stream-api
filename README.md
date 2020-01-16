@@ -14,3 +14,5 @@ java8
 * [Flink-1.9流计算开发：四、filter函数](http://www.cosmozhu.fun/archives/226)
 * [Flink-1.9流计算开发：五、keyBy、sum、print函数](http://www.cosmozhu.fun/archives/228)
 * [Flink-1.9流计算开发：六、reduce函数](http://www.cosmozhu.fun/archives/236)
+* [Flink-1.9流计算开发：七、fold函数](http://www.cosmozhu.fun/archives/238)
+* [Flink-1.9流计算开发：八、time-window-tumbling窗口函数](http://www.cosmozhu.fun/archives/245)
