@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * window-Sliding事件窗口：每5个订单统计一次最近20个订单的订单数量
+ * count-window-Sliding事件窗口：每5个订单统计一次最近20个订单的订单数量
  * @author cosmozhu
  * @mail zhuchao1103@gmail.com
  * @site http://www.cosmozhu.fun
@@ -47,15 +47,9 @@ public class StreamTest {
 
 		}, "order-info");
 		//这里只为将DataStream → KeyedStream,用空字符串做分区键。所有数据为相同分区
-		orderSource.keyBy(new KeySelector<Tuple2<String,Integer>, String>(){
-			@Override
-			public String getKey(Tuple2<String, Integer> value) throws Exception {
-				return "";
-			}
-			
-		})
+		orderSource
 		//每5个订单统计一次最近20个订单的订单数量
-		.countWindow(20,5)
+		.countWindowAll(20,5)
 		//这里用HashMap做暂存器
 		.fold(new HashMap<String, Integer>(), new FoldFunction<Tuple2<String,Integer>, Map<String, Integer>>() {
 			@Override
