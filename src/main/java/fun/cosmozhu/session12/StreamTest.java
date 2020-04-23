@@ -50,12 +50,16 @@ public class StreamTest {
 		orderSource.
 				// 	未使用keyby分区流的时间窗口
 				timeWindowAll(Time.seconds(10))
-				// apply 函数是对窗口内的数据做处理的核心方法。这里只是简单的将窗口期内的数据重新做了提交
+				// apply 函数是对窗口内的数据做处理的核心方法。这是对10s窗口中的所有元素做过滤，只输出商品名称为苹果的订单
 				.apply(new AllWindowFunction<Tuple2<String, Integer>, String, TimeWindow>() {
 					@Override
 					public void apply(TimeWindow window, Iterable<Tuple2<String, Integer>> values,
 							Collector<String> out) throws Exception {
-						values.forEach(v -> out.collect(v.f0 + ":" + v.f1));
+						values.forEach(v -> {
+							if(v.f0.contentEquals("苹果")) {
+								out.collect(v.f0 + ":" + v.f1);
+							}
+						});
 					}
 				}).print();
 
