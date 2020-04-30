@@ -69,7 +69,7 @@ public class StreamTest {
 			}
 		})
 		//转换20s窗口期内的订单金额为美元
-		.window(TumblingEventTimeWindows.of(Time.seconds(20)))
+		.window(TumblingEventTimeWindows.of(Time.seconds(10)))
 		//将订单金额人民币转换为美元
 		.apply(new JoinFunction<OrderInfo, ExchangeRateInfo, String>() {
 			private static final long serialVersionUID = 1L;
