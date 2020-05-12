@@ -59,7 +59,7 @@ public class StreamTest {
 		
 		//订单流inner join 汇率流
 		usdToCnyKeyedStream.intervalJoin(orderDsKeyedStream)
-		.between(Time.milliseconds(-250), Time.milliseconds(250))
+		.between(Time.milliseconds(-500), Time.milliseconds(500))
 		.upperBoundExclusive()
 		.lowerBoundExclusive()
 		.process(new ProcessJoinFunction<ExchangeRateInfo, OrderInfo, String>() {
